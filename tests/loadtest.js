@@ -1,4 +1,3 @@
-
 import http from 'k6/http'
 import { check, sleep } from 'k6'
 
@@ -6,7 +5,7 @@ import { check, sleep } from 'k6'
 //   vus: 500,
 //   duration: '10s',
 // };
-export const options = {
+export const options = { // stress testing
   stages: [
     { duration: '30s', target: 500 },
     { duration: '1m',  target: 1000 },
