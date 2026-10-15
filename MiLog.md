@@ -15,3 +15,13 @@ Hmm tbh i dont know what i was gonna learn for devops today but i got tired of c
 
 ## 15 October 2026 23:10
 So ive decided to take a closer look to Dockerfile. I'll take a closer look to it then. So i added a couple lines in Dockerfile its me trying to explain and reason on why do i write Dockerfile that way. Cuz the why is more important than what. So i try my best explaining what each step does and why it does that instead of this. I js found that run and cmd both run command but "run" is a command you ran when you're first creating the container, whilst cmd is a command u ran each time u start a container. Then COPY syntax works like this COPY <file name> <destination> (basically works like the cp command :o). Also i js knew that the EXPOSE syntax doesnt meant u assign a port to that container but its to only to act as Documentation. . . Shocking right ? ik. So in short its only purpose js to say that ts container expects a traffic at port 5050. . . Well it can be read by Docker if i ran the Dockerfile with docker run -P. But in my case i use compose to manage my redis database so it statys in one whole package.
+
+## 16 October 2026 00:02
+Yea this is js a continuation from the previous session im gonna read about compose.yaml. So after reading about it for a while compose.yaml file is basically a script for managing multi container. Say i want to have a Postgre database, a REDIS as a cache. I could A put it on one container which is ALMOST NEVER RECCOMENDED, ALWAYS SEPARATE STUFF THATS THE WHOLE PURPOSE OF CONTAINERIZATION TO CONTAIN STUFF SO IT WOULDNT CRASH THE WHOLE APP or B separate it into different container meaning container A for the API, container B for the postgre, container C for the redis so when we want to scale based on many users say u have kubernetes. It can scale depending on the requests that came in, so lets say the container API 1 crashed kubernetes can js duplicate / redirect it to container API B. But i think this approach is good but its crucial to remember that the code CAN NOT HOLD ANY VALUE THAT WOULD BE BETTER IF IT WERE IN REDIS SUCH AS COUNTER, IT WOULD BE A DISASTER IF SAY THE COUNTER VALUE ARE HOLD BY A VARIABLE IN THAT API CONTAINER. CUZ WHEN IT CRASHED THE WHOLE SHI WENT POOF TOO.
+
+So compose has these few core pillars but im js gonna write three : 
+1. services
+2. volumes
+3. networks
+
+Now im gonna take a closer look to these three and using my compose.yaml as a small example. Its 00:37, im gonna sleep now i still have business on campus tomorrow at 7 am in the morning.

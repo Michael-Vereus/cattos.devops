@@ -1,8 +1,8 @@
-services:
-  web:
-    build: .
-    ports:
-      - "5050:5050"
+services: # defines what services that are used in my app
+  web: # this js gave a name to my service
+    build: . # to say build from the Dockerfile in ts dir
+    ports: # now this one publishes the port host-port:container-port
+      - "5050:5050" # basically says map the laptop 5050 port to the container 5050 port
     environment:
       REDIS_HOST: redis
     depends_on:
