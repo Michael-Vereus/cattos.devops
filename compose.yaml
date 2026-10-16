@@ -3,9 +3,12 @@ services: # defines what services that are used in my app
     build: . # to say build from the Dockerfile in ts dir
     ports: # now this one publishes the port host-port:container-port
       - "5050:5050" # basically says map the laptop 5050 port to the container 5050 port
-    environment:
-      REDIS_HOST: redis
-    depends_on:
-      - redis
-  redis:
-    image: redis:7-alpine
+    environment: # define the env variable in the web container
+      REDIS_HOST: redis # i think it set the env variable REDIS_HOST to plain string redis.
+      # it worked because it matches the service name "redis" below and Compose's built in DNS resolves
+      # that name to the Redis container's IP on the shared virtual network that is also created by docker automatically
+    depends_on: # basically saying what the container depends on what service
+    # and it also controls the start order but it doesnt wait for the service it depends on to finish its starting phase
+      - redis # since i wrote redis it will start the redis first then the web service.
+  redis: # same as web defined a service called redis
+    image: redis:7-alpine # pull a redis image from docker

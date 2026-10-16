@@ -25,3 +25,7 @@ So compose has these few core pillars but im js gonna write three :
 3. networks
 
 Now im gonna take a closer look to these three and using my compose.yaml as a small example. Its 00:37, im gonna sleep now i still have business on campus tomorrow at 7 am in the morning.
+
+## 16 October 2026 14:11 
+Finished annotating the compse.yaml. Now i know that depends_on doesn't meant that docker will wait for the service it depends on to finish starting first. It only affects that start order. REDIS_HOST literally only create a env_variable then set it to a literal string called "redis", then Compose's built in DNS resolve it to the Redis container's IP on the shared virtual network (also created automatically). I think the equivalent linux command to REDIS_HOST: redis is "export REDIS_HOST=redis"
+Then in the app.py it called os.getenv("REDIS_HOST", "localhost")
